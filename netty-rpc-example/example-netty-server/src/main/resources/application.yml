@@ -1,0 +1,39 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /
+
+logging:
+  config: classpath:logback-dev.xml
+  level:
+    com.learn.more: INFO
+    org.springframework.boot.autoconfigure: ERROR
+
+spring:
+  datasource: #数据库配置
+    url: jdbc:mysql://localhost:3306/little_job?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useServerPrepStmts=true
+    username: root
+    password: 12345678
+    initialSize: 5
+    minIdle: 5
+    maxActive: 50
+    maxWait: 10000
+    timeBetweenEvictionRunsMillis: 10000
+    minEvictableIdleTimeMillis: 50000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+
+mybatis:
+  typeAliasesPackage: com.learn.more.domain.entity
+  configuration:
+    mapUnderscoreToCamelCase: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+little-rpc:
+  host: 127.0.0.1
+  port: 8888
+

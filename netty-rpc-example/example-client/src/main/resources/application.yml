@@ -1,0 +1,15 @@
+server:
+  port: 8091
+  servlet:
+    context-path: /admin
+
+logging:
+  config: classpath:logback-dev.xml
+  level:
+    com.learn.more: INFO
+    org.springframework.boot.autoconfigure: ERROR
+
+little-rpc:
+  host: 127.0.0.1
+  port: 8888
+
