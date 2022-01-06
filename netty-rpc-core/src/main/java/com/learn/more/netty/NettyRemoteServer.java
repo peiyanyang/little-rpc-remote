@@ -54,6 +54,15 @@ public class NettyRemoteServer{
 
     @PostConstruct
     public void init(){
+        Thread serverThread = new Thread(() -> initRemoteServer(), "RemoteServerThread");
+        serverThread.setDaemon(true);
+        serverThread.start();
+    }
+
+    /**
+     * 初始化服务端
+     */
+    private void initRemoteServer() {
         try {
             serverBootstrap.group(eventLoopGroupBoss, eventLoopGroupWorker)
                     .channel(NioServerSocketChannel.class)
@@ -80,6 +89,5 @@ public class NettyRemoteServer{
             eventLoopGroupBoss.shutdownGracefully();
             eventLoopGroupWorker.shutdownGracefully();
         }
-
     }
 }
